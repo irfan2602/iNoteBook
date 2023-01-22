@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar-nav ms-auto mb-2 mb-lg-0{
+  text-decoration: none;
+  display: flex;
+  color: red;
+}
+
+#credentialBtn {
+  display: flex;
+  float: right;
+  
+}
