@@ -1,12 +1,13 @@
 import React from 'react'
 import { NavLink,useLocation,useNavigate } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = (props) => {
   let location = useLocation()
   const navigate = useNavigate()
   const handleLogout = () => {
     localStorage.removeItem('token')
     navigate('/login')
+    props.showAlert("Successfully Login","success")
   }
 
   return (
