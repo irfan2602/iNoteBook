@@ -7,7 +7,9 @@ import NoteState from './context/notes/NoteState';
 import Alert  from './components/Alert';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import AllUsers from './components/AllUsers';
 import { useState } from 'react';
+import Chat from './components/Chat';
 
 function App() {
   const [alert,setAlert] = useState(null)
@@ -31,6 +33,12 @@ function App() {
           </Routes>
           <Routes>
             <Route path='/about' element={<About />}></Route>
+          </Routes>
+          <Routes>
+            <Route path='/user' element={<AllUsers />}></Route>
+          </Routes>
+          <Routes>
+            <Route path='/chat' element={<Chat />}></Route>
           </Routes>
           <Routes>
             <Route path='/login' element={<Login showAlert={showAlert} />}></Route>

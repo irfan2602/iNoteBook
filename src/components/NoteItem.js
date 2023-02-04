@@ -1,6 +1,5 @@
 import React,{useContext, useState} from 'react'
 import noteContext from '../context/notes/noteContext'
-import About from './About'
 
 
 
@@ -23,7 +22,6 @@ const NoteItem = (props) => {
                     <p class="card-text"> {note.tag} </p>
                 </div>
             </div>
-         {/* <EditNoteModal /> */}
         </div>
     )
 }

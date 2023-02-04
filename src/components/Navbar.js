@@ -1,13 +1,15 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { NavLink,useLocation,useNavigate } from 'react-router-dom'
+
 
 const Navbar = (props) => {
   let location = useLocation()
   const navigate = useNavigate()
+  
   const handleLogout = () => {
     localStorage.removeItem('token')
     navigate('/login')
-    props.showAlert("Successfully Login","success")
+    props.showAlert("Successfully Logout","success")
   }
 
   return (
@@ -23,7 +25,12 @@ const Navbar = (props) => {
               <li className="nav-item">
                 <NavLink className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</NavLink>
               </li>
-              
+              <li className="nav-item">
+                <NavLink className={`nav-link ${location.pathname === "/user" ? "active" : ""}`} to="/user">Users</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className={`nav-link ${location.pathname === "/chat" ? "active" : ""}`} to="/chat">Chats</NavLink>
+              </li> 
             </ul>
             {!localStorage.getItem('token') ?
             <form className="d-flex mx-40" id='credentialBtn'>
