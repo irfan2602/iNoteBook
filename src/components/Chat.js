@@ -49,6 +49,9 @@ const Chat = () => {
     }
     const handleClick = () => {
         setIsMessage({ ...ismessage })
+        setTimeout(() => {
+            dispatch({ type: "OPEN_CHAT_MODAL", isOpen: false })
+        },1000)
     }
 
     const onClose = () => {
@@ -65,11 +68,11 @@ const Chat = () => {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{/* {users.map((user) => {return(<h5>{user.name}</h5>)})} */} Start Conversation</DialogTitle>
+                <DialogTitle id="alert-dialog-title">Start Conversation</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         <div className='row' >
-                            <div className='col-md-12' style={{ overflow: 'auto' }}> 
+                            <div className='col-md-12' style={{ overflow: 'auto',minHeight:'15rem' }}> 
                                 {
                                     ismessage.message
                                 }
