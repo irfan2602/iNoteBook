@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Chat from './Chat'
+import { useSelector, useDispatch } from 'react-redux'
+import IconButton from '@mui/material/IconButton';
+import { Tooltip } from 'bootstrap';
 
 const AllUsers = () => {
+    const isOpenState = useSelector(state => state.isOpen)
+    const dispatch = useDispatch()
+
+
     const [users, setUsers] = useState([
         { name: "", email: "" }
     ])
@@ -32,8 +38,9 @@ const AllUsers = () => {
     }, [localStorage.getItem('token')])
 
     const handleUser = () => {
-        alert(`Hi User`)
+        dispatch({ type: "OPEN_CHAT_MODAL", isOpen: true })
     }
+
 
     return (
         <div>
@@ -41,15 +48,11 @@ const AllUsers = () => {
                 users.map((user) => {
                     return (<div className='container'>
                         <div className='row row-cols-2 row-cols-lg-5 g-2 g-lg-3'>
-                        <div className='col-md-4'  >
-                            <button 
-                                type='button' 
-                                className='btn btn-outline-primary' 
-                                onClick={handleUser} 
-                                style={{marginBottom:'5px'}} >
-                                    {user.name} 
-                            </button>
-                        </div>
+                            <div className='col-md-4'  >
+                                <IconButton data-toggle="tooltip" data-placement="right" title={user.email} size="small" open={isOpenState} aria-label="show 4 new mails" color="inherit"  >
+                                    {user.name}
+                                </IconButton>
+                            </div>
                         </div>
                     </div>
                     )

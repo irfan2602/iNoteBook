@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 
 const Notes = (props) => {
     const navigate = useNavigate()
-    const [modal,setModal] = useState(false)
     const context = useContext(noteContext)
     const { notes, getNote } = context
     useEffect(() => {
