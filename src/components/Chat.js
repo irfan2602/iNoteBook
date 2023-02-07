@@ -7,7 +7,6 @@ import ChatTemplate from './ChatTemplate';
 
 const Chat = () => {
     const isOpenState = useSelector(state => state.isOpen)
-    const message = useSelector(state => state.message)
     const dispatch = useDispatch()
 
     const [ismessage, setIsMessage] = useState({message:""})
@@ -15,6 +14,7 @@ const Chat = () => {
     const [users, setUsers] = useState([
         { name: "", email: "" }
     ])
+
     const navigate = useNavigate()
 
     let host = `http://localhost:5000`
@@ -30,6 +30,8 @@ const Chat = () => {
         console.log(json)
         setUsers(json)
     }
+
+    /* console.log(users[0].name) */
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -53,6 +55,7 @@ const Chat = () => {
             dispatch({ type: "OPEN_CHAT_MODAL", isOpen: false })
         },1000)
     }
+    
 
     const onClose = () => {
         dispatch({ type: "OPEN_CHAT_MODAL", isOpen: false })
@@ -68,7 +71,7 @@ const Chat = () => {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">Start Conversation</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{users[0].name}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         <div className='row' >
@@ -78,7 +81,7 @@ const Chat = () => {
                                 }
                             </div>
                         </div>
-                        <textarea type="textare" name='message' onChange={handleChange} placeholder='type...' className="form-control" id="email" aria-describedby="emailHelp" />
+                        <textarea type="textare" name='message' onChange={handleChange} placeholder='type...' className="form-control" id="message" aria-describedby="emailHelp" />
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -88,11 +91,11 @@ const Chat = () => {
             </Dialog>
 
             {
-                users.map((user) => {
+                users.map((user,index) => {
                     return (<div className='container'>
                         <div className='row row-cols-2 row-cols-lg-5 g-2 g-lg-3'>
                             <div className='col-md-4'  >
-                                <IconButton size="small" open={isOpenState} aria-label="show 4 new mails" color="inherit" onClick={handleUser} >
+                                <IconButton key={index} size="small" open={isOpenState} aria-label="show 4 new mails" color="inherit" onClick={handleUser} >
                                     {user.name}
                                 </IconButton>
                             </div>

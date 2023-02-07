@@ -48,3 +48,53 @@
   float: right;
   
 }
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+}
+.loading svg {
+  font-family: 'Roboto';
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.loading svg text {
+  font-family: 'Roboto';
+  text-transform: uppercase;
+  animation: stroke 5s infinite alternate;
+  stroke-width: 1;
+  stroke: #005eb8;
+  font-size: 80px;
+  font-weight: 100;
+}
+
+@keyframes stroke{
+  0% {
+    fill: rgba(72,138,20,0);
+    stroke: rgba(54,95,160,1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 1;
+  }
+  70% {
+    fill: rgba(72,138,20,0);
+    stroke: rgba(54,95,160,1);
+  }
+  80% {
+    fill: rgba(72,138,20,0);
+    stroke: rgba(54,95,160,1);
+    stroke-width: 1;
+  }
+  100% {
+    fill: #005eb8;
+    stroke: #005eb8;
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}

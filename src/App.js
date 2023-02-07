@@ -10,6 +10,7 @@ import Login from './components/Login';
 import AllUsers from './components/AllUsers';
 import { useState } from 'react';
 import Chat from './components/Chat';
+import Loading from './components/Loading';
 
 function App() {
   const [alert,setAlert] = useState(null)
@@ -25,6 +26,7 @@ function App() {
   return (
     <>
       <NoteState>
+        
         <Navbar />
         <Alert alert={alert} />
         <div className='container'>
@@ -39,6 +41,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path='/chat' element={<Chat />}></Route>
+          </Routes>
+          <Routes>
+            <Route path='/home' element={<Loading />}></Route>
           </Routes>
           <Routes>
             <Route path='/login' element={<Login showAlert={showAlert} />}></Route>

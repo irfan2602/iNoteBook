@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Loading from './Loading'
 
 const Signup = (props) => {
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ const Signup = (props) => {
       props.showAlert("Successfully Created","success")
     }
     else {
-      props.showAlert("Invalid Details","danger")
+      props.showAlert(json.error,"danger")
     }
 
 
@@ -54,6 +55,7 @@ const Signup = (props) => {
         </div>
         <button type="submit" className="btn btn-primary" >Submit</button>
       </form>
+      
     </div>
   )
 }

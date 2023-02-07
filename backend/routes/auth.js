@@ -66,7 +66,7 @@ router.post('/login', [
         let user = await Users.findOne({ email })
         if (!user) {
             success = false
-            return res.status(400).json({ error: "Sorry doesnt exists" })
+            return res.status(400).json({ error: "Sorry User doesnt exists" })
         }
 
         const comparePassword = await bcrypt.compare(password, user.password)
@@ -111,6 +111,20 @@ router.get('/alluser',fetchuser, async (req, res) => {
     try {
         //let userID = req.user.id
         const user = await Users.find()
+        res.send(user)
+
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send('Internal Server Error')
+    }
+
+})
+
+// ROUTE: 4 Get  Other Users Data
+router.get('/otheruserdata',fetchuser, async (req, res) => {
+    try {
+        let userID = req.user.id
+        const user = await Users.findById(userID)
         res.send(user)
 
     } catch (error) {

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Loading from './Loading'
 
 const Login = (props) => {
     const navigate = useNavigate()
@@ -20,15 +21,23 @@ const Login = (props) => {
         if (json.success) {
             localStorage.setItem('token', json.authToken)
             navigate('/')
-            props.showAlert("Successfully Login","success")
+            props.showAlert("Successfully Login", "success")
         }
         else {
-            props.showAlert("Invalid Details","danger")
+            /* props.showAlert("Invalid Details","danger") */
+            props.showAlert(credential.email && credential.password === null ? "Please Fill details" : json.error, "danger")
         }
     }
     const onChange = (e) => {
         setCredential({ ...credential, [e.target.name]: e.target.value })
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            <Loading />
+        },1000)
+    },[])
+
     return (
         <div className='mt-3'>
             <h2>Please login to continue to iNoteBook</h2>
@@ -41,8 +50,9 @@ const Login = (props) => {
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" value={credential.password} className="form-control" onChange={onChange} name='password' id="password" />
                 </div>
-                <button type="submit" className="btn btn-primary" >Submit</button>
+                <button type="submit" className="btn btn-primary"  >Submit</button>
             </form>
+                                 
         </div>
     )
 }

@@ -16,7 +16,7 @@ const Navbar = (props) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" aria-current="page" to="/">iNoteBook</NavLink>
+          <NavLink className="navbar-brand" aria-current="page" to="/home">iNoteBook</NavLink>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">

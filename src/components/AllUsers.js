@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import IconButton from '@mui/material/IconButton';
+import { Button, Typography } from '@mui/material';
 import { Tooltip } from 'bootstrap';
 
 const AllUsers = () => {
@@ -49,9 +50,19 @@ const AllUsers = () => {
                     return (<div className='container'>
                         <div className='row row-cols-2 row-cols-lg-5 g-2 g-lg-3'>
                             <div className='col-md-4'  >
-                                <IconButton data-toggle="tooltip" data-placement="right" title={user.email} size="small" open={isOpenState} aria-label="show 4 new mails" color="inherit"  >
+                                <IconButton data-toggle="tooltip" data-placement="right" title={user.name} size="small" open={isOpenState} aria-label="show 4 new mails" color="inherit"  >
                                     {user.name}
                                 </IconButton>
+                            </div>
+                            <div className='col-md-4'  >
+                                <Button data-toggle="tooltip" data-placement="right" title={user.email} size="small" open={isOpenState} aria-label="show 4 new mails" color="inherit"  >
+                                    {user.email}
+                                </Button>
+                            </div>
+                            <div className='col-md-4'  >
+                                <Button data-toggle="tooltip" data-placement="right" title={user._id} size="small" open={isOpenState} aria-label="show 4 new mails" color="inherit"  >
+                                    {user._id}
+                                </Button>
                             </div>
                         </div>
                     </div>
