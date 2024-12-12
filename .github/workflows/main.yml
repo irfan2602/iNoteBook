@@ -1,0 +1,32 @@
+on:
+push:
+branches:
+- master
+paths:
+- trackingMetadat.ts
+jobs:
+update-wiki:
+runs-on: ubuntu-latest
+steps:
+-name: Checkout repository
+uses: actions/checkout@v2
+-name: Check if trackingMetadata.ts was updated
+id: check-file
+run: |
+if git diff --name-only ${{github.event.before}} ${{github.sha}} | grep -q 'trackingMetadata.ts'; then
+echo "file_changed=true" >> $GITHUB_ENV
+else
+echo "file_changed=false" $GITHUB_ENV
+fi
+- name: Update wiki
+if: env.file_changed == 'true'
+run: |
+# Update the wiki page using GitHub API
+curl -X PUT \
+-H "Authentication: token ${{secrets.GITHUB_TOKEN}}" \
+-H "Content-Type: application/json" \
+-d '{
+"message": "Update wiki page due to trackingMetadata.ts file changed",
+"content": "$(base64 -w 0 trackingMetadata.ts)"
+}' \
+https://api.github.com/repos/${{github.repository}}/wiki/trackingMetadataPage.md
